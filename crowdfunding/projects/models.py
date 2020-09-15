@@ -6,9 +6,11 @@ class Project(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
     goal = models.IntegerField()
+    raised = models.IntegerField()
     image = models.URLField()
     is_open = models.BooleanField()
     date_created = models.DateTimeField()
+    date_end = models.DateTimeField()
     owner = models.ForeignKey(
         get_user_model(),
         on_delete=models.CASCADE,
