@@ -14,8 +14,8 @@ class CustomUserSerializer(serializers.Serializer):
     country = serializers.CharField(max_length=200)
     user_bio = serializers.CharField(max_length=None)
     bio_pic = serializers.URLField()
-    date_joined = serializers.DateField()
-    project_owner = serializers.BooleanField()
+    date_joined = serializers.DateField(default=timezone.now())
+    project_owner = serializers.BooleanField(default=True)
 
     def create(self, validated_data):
         return CustomUser.objects.create_user(**validated_data)
