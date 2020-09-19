@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import CustomUser
-
+import datetime
 
 
 class CustomUserSerializer(serializers.Serializer):
@@ -14,7 +14,7 @@ class CustomUserSerializer(serializers.Serializer):
     country = serializers.CharField(max_length=200)
     user_bio = serializers.CharField(max_length=None)
     bio_pic = serializers.URLField()
-    date_joined = serializers.DateField(default=timezone.now())
+    date_joined = serializers.DateField(default=datetime.datetime.now())
     project_owner = serializers.BooleanField(default=True)
 
     def create(self, validated_data):
