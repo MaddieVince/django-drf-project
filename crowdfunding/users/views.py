@@ -32,8 +32,8 @@ class CustomUserDetail(APIView):
         serializer = CustomUserSerializer(user)
         return Response(serializer.data)
         
-    def delete(self, request, pk):
-        serializer = CustomUserSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+    # def delete(self, request, pk):
+    #     serializer = CustomUserSerializer(data=request.data)
+    #     if serializer.is_valid():
+    #         serializer.delete()
+    #     return Response(status=status.HTTP_204_NO_CONTENT)

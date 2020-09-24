@@ -18,12 +18,21 @@ class ProjectSerializer(serializers.Serializer):
     title = serializers.CharField(max_length=200)
     description = serializers.CharField(max_length=None)
     goal = serializers.IntegerField()
+    total_raised = serializers.SerializerMethodField()
     image = serializers.URLField()
     is_open = serializers.BooleanField()
     date_created = serializers.DateTimeField()
+    date_end = serializers.DateTimeField()
     owner = serializers.ReadOnlyField(source='owner.id')
     # owner = serializers.CharField(max_length=200)
-    # pledgers = PledgeSerializer(many=True, read_only=True)
+    # pledges = PledgeSerializer(many=True, read_only=True)
+
+    def get_total_raised(self, obj):
+        total_pledges = obj.pledges.all()
+        total = 0
+        for pledge in total_pledges:
+            total += pledge.amount
+        return total
 
     def create(self, validated_data):
         return Project.objects.create(**validated_data)
@@ -46,7 +55,7 @@ class PledgeDetailSerializer(PledgeSerializer):
     project = ProjectSerializer(many=False, read_only=True)
 
     # def update(self, instance, validated_data):
-    #     instance.title = validated_data.get('title', instance.title)
+    #     instance.amount = validated_data.get('title', instance.title)
     #     instance.description = validated_data.get('description', instance.description)
     #     instance.goal = validated_data.get('goal', instance.goal)
     #     instance.image = validated_data.get('image', instance.image)

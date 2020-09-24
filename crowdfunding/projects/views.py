@@ -5,7 +5,7 @@ from rest_framework import status, permissions
 from django.http import Http404
 
 from .models import Project, Pledge
-from .serializers import ProjectSerializer, PledgeSerializer, ProjectDetailSerializer
+from .serializers import ProjectSerializer, PledgeSerializer, ProjectDetailSerializer, PledgeDetailSerializer
 from .permissions import IsOwnerOrReadOnly, IsPledgerOrReadOnly
 
 
