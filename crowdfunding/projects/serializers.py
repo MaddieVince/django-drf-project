@@ -10,6 +10,7 @@ class PledgeSerializer(serializers.Serializer):
     comment = serializers.CharField(max_length=200)
     anonymous = serializers.BooleanField()
     supporter = serializers.ReadOnlyField(source='supporter.id')
+    date_created = serializers.DateTimeField(default=timezone.now())
     project_id = serializers.IntegerField()
 
     def create(self, validated_data):
@@ -21,7 +22,7 @@ class ProjectSerializer(serializers.Serializer):
     description = serializers.CharField(max_length=None)
     goal = serializers.IntegerField()
     total_raised = serializers.SerializerMethodField()
-    num_supporters = serializers.SerializerMethodField
+    num_supporters = serializers.SerializerMethodField()
     image = serializers.URLField()
     is_open = serializers.SerializerMethodField()
     date_created = serializers.DateTimeField(default=timezone.now())
@@ -38,7 +39,15 @@ class ProjectSerializer(serializers.Serializer):
         return total
 
     def get_num_supporters(self, obj):
-        pass
+        filtered_supporters = []
+        total_supporters = obj.pledges.all()
+        for supporters in total_supporters:
+            temp_supporter = supporters.supporter
+            if temp_supporter in filtered_supporters:
+                pass
+            else:
+                filtered_supporters.append(temp_supporter)  
+        return len(filtered_supporters)
 
     def get_is_open(self, obj):
         if timezone.now() > obj.date_end:
