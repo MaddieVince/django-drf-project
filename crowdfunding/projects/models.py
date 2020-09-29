@@ -1,12 +1,13 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-
+from django.utils import timezone
 
 class Project(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
     goal = models.IntegerField()
     total_raised = models.IntegerField()
+    num_supporters = models.IntegerField()
     image = models.URLField()
     is_open = models.BooleanField()
     date_created = models.DateTimeField()
@@ -22,6 +23,7 @@ class Pledge(models.Model):
     kudos = models.BooleanField(default=False)
     comment = models.CharField(max_length=200)
     anonymous = models.BooleanField()
+    date_created = models.DateTimeField()
     project = models.ForeignKey(
         'Project',
         on_delete=models.CASCADE,
