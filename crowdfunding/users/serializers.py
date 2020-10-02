@@ -18,3 +18,13 @@ class CustomUserSerializer(serializers.Serializer):
 
     def create(self, validated_data):
         return CustomUser.objects.create_user(**validated_data)
+
+class CustomUserDetailSerializer(CustomUserSerializer):
+
+    def update(self, instance, validated_data):
+        instance.user_bio = validated_data.get('user_bio', instance.user_bio)
+        instance.bio_pic = validated_data.get('bio_pic', instance.bio_pic)
+        instance.country = validated_data.get('country', instance.country)
+        instance.project_owner = validated_data.get('is_open', instance.project_owner)
+        instance.save()
+        return instance
