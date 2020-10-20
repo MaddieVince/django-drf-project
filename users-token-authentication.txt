@@ -1,0 +1,13 @@
+User 1:
+Username: testuser1
+password: 10Surrey.
+Token: c9c1a2e0544bb60108a0f3ff48b0d1421ea61e6f
+User 2:
+Username: testuser2 (Project Owner)
+Password: password
+Token: "69e820edcd36e3c2a56a5747005002cc80567a72"
+
+User 3: 
+Username: testuser3 (Pledge Supporter)
+Password: password
+Token: "5edd7cba44b5afdd5d4761193c8485810677f95a"
