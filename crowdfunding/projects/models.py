@@ -6,10 +6,10 @@ class Project(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
     goal = models.IntegerField()
-    total_raised = models.IntegerField()
-    num_supporters = models.IntegerField()
+    total_raised = models.IntegerField(default=0)
+    num_supporters = models.IntegerField(default=0)
     image = models.URLField()
-    is_open = models.BooleanField()
+    is_open = models.BooleanField(default=True)
     date_created = models.DateTimeField()
     date_end = models.DateTimeField()
     owner = models.ForeignKey(
